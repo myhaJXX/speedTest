@@ -1,0 +1,46 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+@import '@styles/fonts';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 90%;
+    justify-content: center;
+    font-family: Poppins;
+    background-color: $grey-D;
+}
+
+header{
+    
+}
+
+main{
+    width: 100%;
+}
+
+h1{
+    @include font(3em, 800, #fff)
+}
+
+h2{
+    @include font(2em, 600)
+}
+
+h3{
+    @include font(1.5em, 800)
+}
+
+p{
+    @include font(1em, 400)
+}
+
+a{
+    text-decoration: none;
+}
