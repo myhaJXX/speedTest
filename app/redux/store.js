@@ -6,6 +6,7 @@ const reducer = (state = defaultState, action)=>{
     switch (action.type){
         case "changeColors": return {...state, colorsStore: action.payload};
         case "changeFilters": return {...state, filtersStore: action.payload};
+        case "changeWindow": return {...state, changeWindow: action.payload};
         default: return state;
     }
   }

@@ -1,0 +1,12 @@
+@import '@styles/variables';
+
+.cont{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    svg{
+        height: 15px;
+        width: 15px;
+    }
+}

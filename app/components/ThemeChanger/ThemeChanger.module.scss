@@ -1,0 +1,45 @@
+.cont{
+    height: calc(100% - 100px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 5;
+}
+
+.box{
+    padding: 10px 20px;
+    width: 400px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    transition: all .2s linear;
+
+    article{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        transition: all .2s linear;
+
+        &:hover{
+            transform: scale(1.03);
+        }
+    }
+
+    svg{
+        align-self: flex-end;
+        height: 25px;
+        width: 25px;
+        transition: all .2s linear;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    svg,path{
+        cursor: pointer;
+    }
+}

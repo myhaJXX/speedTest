@@ -1,0 +1,16 @@
+@import '@styles/variables';
+.cont{
+    padding: 5px 10px;
+    border: 3px solid;
+    border-radius: $radiusL;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+
+    >div{
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}

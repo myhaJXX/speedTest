@@ -10,5 +10,6 @@ export const defaultState = {
   filtersStore: {
     type: 'words',
     restrictions: '30'
-  }
+  }, 
+  changeWindow: false
 }
