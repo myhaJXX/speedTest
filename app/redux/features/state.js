@@ -8,7 +8,8 @@ export const defaultState = {
   },
 
   filtersStore: {
-    type: 'words',
-    restrictions: '30'
+    type: 'time',
+    restrictions: '30',
+    punctuation: 'without'
   }
 }

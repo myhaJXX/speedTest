@@ -9,6 +9,8 @@ const Filters = () => {
 
   return (
     <aside style={{backgroundColor: colorsStore.bgD}} className={cl.cont}>
+        <FiltersLinks links={['punctuation', 'without']} type='punctuation' key='p'/>
+        <hr style={{backgroundColor: colorsStore.bg}}/>
         <FiltersLinks links={['words', 'time']} type='type' key='t'/>
         <hr style={{backgroundColor: colorsStore.bg}}/>
         <FiltersLinks links={['15', '30', '45', '60']} type='restrictions' key='r'/>
