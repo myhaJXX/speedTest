@@ -1,0 +1,16 @@
+@import '@styles/mixins';
+
+.cont{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    a{
+        @include font(0.875em, 300);
+        cursor: pointer;
+        transition: all .2s linear;
+        &:hover{
+            opacity: 0.5;
+        }
+    }
+}

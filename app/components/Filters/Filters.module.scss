@@ -1,0 +1,32 @@
+@import '@styles/variables';
+
+.cont{
+    padding: 10px 20px;
+    border-radius: $radius;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
+    >hr{
+        height: 90%;
+        width: 4px;
+        border: none;
+        border-radius: $radiusL;
+    }
+}
+
+.box{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    >p{
+        cursor: pointer;
+        transition: all .2s linear;
+
+        &:hover{
+            transform: scale(1.05);
+            opacity: 0.5;
+        }
+    }
+}

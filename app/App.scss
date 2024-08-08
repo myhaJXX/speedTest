@@ -10,23 +10,34 @@
 }
 
 body{
+    height: 100vh;
     display: grid;
-    grid-template-columns: 90%;
+    grid-template: 50px 1fr 50px / 90%;
     justify-content: center;
     font-family: Poppins;
-    background-color: $grey-D;
 }
 
 header{
-    
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
 
 main{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 h1{
-    @include font(3em, 800, #fff)
+    @include font(3em, 800)
 }
 
 h2{
