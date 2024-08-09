@@ -26,13 +26,13 @@ const TextSection = () => {
         dis({type: 'changeLetter', payload: {...gameItems, text: newText}})
       }
       changeText()
-    }, [filtersStore])
+    }, [filtersStore, colorsStore])
 
 
   return (
     <section className={cl.cont}>
         <Text text={text}/>
-        <FontAwesomeIcon icon={faRefresh} color={colorsStore.logo}/>
+        <FontAwesomeIcon icon={faRefresh} color={colorsStore.logo} onClick={()=>dis({type:'changeFilters', payload: {...filtersStore}})}/>
     </section>
   )
 }

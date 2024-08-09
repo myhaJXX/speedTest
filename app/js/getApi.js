@@ -9,6 +9,10 @@ export const getText = async (params)=>{
         text = text.replaceAll(/,|\.|!|\?|\(|\)|-|—|:/g, '')
         text = text.toLowerCase()
     }
+
+    if(params.type === 'words'){
+        text = text.split(' ').slice(0, params.restrictions).join(' ')
+    }
     // text = params.words ? text.split(" ").slice(0,params.words).join(' ') : text
     // console.log(text)
     return text

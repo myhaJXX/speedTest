@@ -13,7 +13,7 @@ const Filters = () => {
         <hr style={{backgroundColor: colorsStore.bg}}/>
         <FiltersLinks links={['words', 'time']} type='type' key='t'/>
         <hr style={{backgroundColor: colorsStore.bg}}/>
-        <FiltersLinks links={['15', '30', '45', '60']} type='restrictions' key='r'/>
+        <FiltersLinks links={['5', '15', '30', '45']} type='restrictions' key='r'/>
     </aside>
   )
 }
