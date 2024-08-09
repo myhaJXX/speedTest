@@ -11,5 +11,11 @@ export const defaultState = {
     type: 'time',
     restrictions: '30',
     punctuation: 'without'
+  },
+
+  gameItems: {
+    text: '',
+    activeLetter: -2,
+    activeKey: ''
   }
 }
