@@ -4,8 +4,6 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import cl from './TextSection.module.scss'
-import { getWordsId } from "@/app/js/getWordsIs"
-import { placeError } from "@/app/js/placeError"
 import { countStat } from "@/app/js/countStat"
 
 export const GameLogic = ()=>{
@@ -31,7 +29,7 @@ export const GameLogic = ()=>{
         this functions works like u trying to delete first symbol
         we check if id == -1, than we close this function
         */
-        if(!(id+1)) return 
+        if(!(id+1) || id >= gameItems.text.length) return 
         let letters = document.querySelectorAll('#letter')
         letters[id].setAttribute('style', `color: ${color}`)
     }
@@ -40,16 +38,17 @@ export const GameLogic = ()=>{
         let length = document.querySelectorAll('#letter').length
         if(length){
             id < userText.length ? (
-                userText[id] === gameItems.text[id] ? changeColor(id, colorsStore.textA) : changeColor(id, colorsStore.textUncorrect)//correct it
+                userText[id] === gameItems.text[id] ? changeColor(id, colorsStore.textA) : changeColor(id, colorsStore.textUncorrect)
             ) : changeColor(id - 1, colorsStore.textU)
         }
         //if we see mistake start function which will find and place mistake
         if(userText[id] != gameItems.text[id] && userText){
-            setTotalMistakes(totalMistakes+1)
+            if(id < userText.length) setTotalMistakes(totalMistakes+1)
         }
 
         setId(userText.length)
         setStart(true) 
+        console.log(gameStats)
     }, [userText])
 
     useEffect(()=>{ 
@@ -72,9 +71,10 @@ export const GameLogic = ()=>{
             document.querySelector('textarea').setAttribute('disabled', 'true') //off textarea
             let timeE = new Date().getTime()
             dis({
-                    type: 'changeGameStats', 
-                    payload: countStat(gameStats, totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text.split(' ').length, gameItems.text, userText)
-                })
+                type: 'changeGameStats', 
+                payload: 
+                countStat(gameStats, totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text.split(' ').length, gameItems.text, userText)
+            })
             setStart(false)
         }
     }, [id])
@@ -84,6 +84,7 @@ export const GameLogic = ()=>{
         setId(0)
         setUserText('')
         setStart(false)
+        setTotalMistakes(0)
         document.querySelectorAll('#letter').forEach((e,i)=>{
             if(i>=0) e.style.color = colorsStore.textU
         })
@@ -91,7 +92,6 @@ export const GameLogic = ()=>{
         
 
         document.querySelector('textarea').removeAttribute('disabled')
-        dis({type: 'changeGameStats', payload: {...gameStats, finished: false}})
     }, [gameItems.text])
 
     useEffect(()=>{
@@ -101,5 +101,7 @@ export const GameLogic = ()=>{
     }, [start])
     
     //...
-    return <textarea value={userText} onChange={(e)=>setUserText(e.target.value)}></textarea>
+    return  <textarea value={userText} 
+            onChange={(e)=>setUserText(e.target.value)}
+            onBlur={()=>dis({type: 'changeColors', payload: {...colorsStore}})}/>
 }

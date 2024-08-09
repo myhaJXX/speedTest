@@ -4,7 +4,7 @@ import ReduxProvider from "./redux/Provider";
 
 export const metadata = {
   title: "MJXTyping",
-  description: "",
+  description: "Test your typing skills",
 };
 
 export default function RootLayout({ children }) {

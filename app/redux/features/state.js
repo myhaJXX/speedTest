@@ -1,11 +1,5 @@
-let localeColors;
-
-//mb add localeSaving colors??))
-if(localStorage.getItem('colors')) localeColors = JSON.parse(localStorage.getItem('colors'))
-  
 export const defaultState = {
-  colorsStore: localeColors ? {...localeColors} : 
-  {
+  colorsStore: {
     textA: '#ab68d8',
     textU: '#c3c3c3',
     textUncorrect: '#ee4c7c',

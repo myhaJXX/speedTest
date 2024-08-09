@@ -4,7 +4,6 @@ import cl from './GameResults.module.scss'
 import GameResultBox from './GameResultBox'
 
 const GameResult = () => {
-  const results = useSelector(state => state.gameStats)
   const colorsStore = useSelector(state => state.colorsStore)
 
   return (

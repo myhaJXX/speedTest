@@ -13,6 +13,7 @@ const TextSection = () => {
     const gameItems = useSelector(select => select.gameItems)
     const filtersStore = useSelector(select=>select.filtersStore)
     const colorsStore = useSelector(select=>select.colorsStore)
+    const result = useSelector(select => select.gameStats.finished)
 
     const dis = useDispatch()
 
@@ -25,7 +26,7 @@ const TextSection = () => {
         setText(newText)
         dis({type: 'changeLetter', payload: {...gameItems, text: newText}})
       }
-      changeText()
+      if(!result) changeText()
     }, [filtersStore, colorsStore])
 
 

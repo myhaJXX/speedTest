@@ -1,9 +1,9 @@
 {
   "name": "speed2",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5252",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
