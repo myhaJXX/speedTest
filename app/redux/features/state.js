@@ -17,5 +17,6 @@ export const defaultState = {
     text: '',
     activeLetter: -2,
     activeKey: ''
-  }
+  }, 
+  changeWindow: false
 }

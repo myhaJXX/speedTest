@@ -7,6 +7,7 @@ const reducer = (state = defaultState, action)=>{
         case "changeColors": return {...state, colorsStore: action.payload};
         case "changeFilters": return {...state, filtersStore: action.payload};
         case "changeLetter": return {...state, gameItems: action.payload};
+        case "changeWindow": return {...state, changeWindow: action.payload};
         default: return state;
     }
   }
