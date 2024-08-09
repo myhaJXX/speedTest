@@ -6,11 +6,22 @@
     align-items: center;
 
     a{
+        display: flex;
+        align-items: center;
+        gap: 5px;
         @include font(0.875em, 300);
-        cursor: pointer;
         transition: all .2s linear;
+
         &:hover{
             opacity: 0.5;
+        }
+
+        *{
+            cursor: pointer;
+        }
+        svg{
+            height: 15px;
+            width: 15px;
         }
     }
 }

@@ -24,7 +24,7 @@ export const countStat = (gameStats, mistakes, color, timeS, timeE, total, textN
         if(rgb == e.style.color) correctLetters++ //count correct letters
     })
 
-    const acc = Number((correctLetters / (mistakes + correctLetters)).toFixed(2)) //find accuracy by pattern 0.00
+    const acc = Number((correctLetters / (mistakes + correctLetters)).toFixed(2)) * 100 + '%' //find accuracy by pattern 0.00
     const time = Number(((timeE - timeS) / 1000).toFixed(2))
     const wpm = Number(((textN.length / 5 - uncorrectWords) / time * 50).toFixed(2)) //average word.length ~~5 letters
     const rwa = Number((letters.length / time * 60 / 5).toFixed(2))

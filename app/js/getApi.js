@@ -2,7 +2,7 @@
 import axios from "axios"
 export const getText = async (params)=>{
     // console.log(params)
-    const response = await axios.get('https://fish-text.ru/get?&type=sentence&number=2')
+    const response = await axios.get('https://fish-text.ru/get?&type=sentence&number=5')
     let text = response.data.text
 
     if(params.punctuation === 'without'){

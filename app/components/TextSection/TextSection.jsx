@@ -32,7 +32,9 @@ const TextSection = () => {
   return (
     <section className={cl.cont}>
         <Text text={text}/>
-        <FontAwesomeIcon icon={faRefresh} color={colorsStore.logo} onClick={()=>dis({type:'changeFilters', payload: {...filtersStore}})}/>
+        <FontAwesomeIcon icon={faRefresh} color={colorsStore.logo} style={{cursor: 'pointer'}}
+        onClick={()=>dis({type:'changeFilters', payload: {...filtersStore}})}
+        />
     </section>
   )
 }

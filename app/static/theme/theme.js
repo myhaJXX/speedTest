@@ -16,4 +16,5 @@ export const themes = [
     new Theme('Red energy', {textA: '#ee4c7c', textU: '#e3afbc', textUncorrect: '#592851', logo: '#5d001e', bg: '#e3e2df', bgD: '#9a1750'}),
     new Theme('Rain', {textA: '#5ab9ea', textU: '#c1c8e4', textUncorrect: '#ee4c7c', logo: '#8860d0', bg: '#84ceeb', bgD: '#5680e9'}),
     new Theme('Green Heaven', {textA: '#86c232', textU: '#6b6e70', textUncorrect: '#ee4c7c', logo: '#61892f', bg: '#474d4f', bgD: '#222629'}),
+    new Theme('Green lilies', {textA: '#479761', textU: '#b19f9e', textUncorrect: '#a16e83', logo: '#cebc81', bg: '#19181a', bgD: '#3c3c3c'}),
 ]
