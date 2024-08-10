@@ -2,7 +2,7 @@ import React from 'react'
 import cl from './GameResultCard.module.scss'
 import { useSelector } from 'react-redux'
 
-import { transcriber } from '@/app/js/transcriber'
+import { transcriber } from '@jsStatic/transcriber'
 
 const GameResultCard = ({title, parameter}) => {
   const colorsStore = useSelector(state => state.colorsStore)

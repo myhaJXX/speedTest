@@ -13,6 +13,7 @@ const TextSection = () => {
     const gameItems = useSelector(select => select.gameItems)
     const filtersStore = useSelector(select=>select.filtersStore)
     const colorsStore = useSelector(select=>select.colorsStore)
+    const refreshText = useSelector(select => select.refreshText)
     const result = useSelector(select => select.gameStats.finished)
 
     const dis = useDispatch()
@@ -26,15 +27,15 @@ const TextSection = () => {
         setText(newText)
         dis({type: 'changeLetter', payload: {...gameItems, text: newText}})
       }
-      if(!result) changeText()
-    }, [filtersStore, colorsStore])
+      changeText()
+    }, [refreshText])
 
 
   return (
     <section className={cl.cont}>
         <Text text={text}/>
         <FontAwesomeIcon icon={faRefresh} color={colorsStore.logo} style={{cursor: 'pointer'}}
-        onClick={()=>dis({type:'changeFilters', payload: {...filtersStore}})}
+        onClick={()=>dis({type:'refreshText', payload: !refreshText})}
         />
     </section>
   )

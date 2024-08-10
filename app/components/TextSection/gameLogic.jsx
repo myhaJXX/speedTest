@@ -5,14 +5,21 @@ import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import cl from './TextSection.module.scss'
 import { countStat } from "@/app/js/countStat"
+import { addToHis } from "@/app/js/addToHistory"
 
 export const GameLogic = ()=>{
     const dis = useDispatch()
     const gameItems = useSelector(state=>state.gameItems)
     const colorsStore = useSelector(state=>state.colorsStore)
     const gameStats = useSelector(state=>state.gameStats)
+    const filtersStore = useSelector(state => state.filtersStore)
+    const refreshText = useSelector(select => select.refreshText)
 
     const [timeS, setTimeS] = useState()
+
+    const [timeoutStarted, setTimeoutStarted] = useState(true)
+
+    const [timer, setTimer] = useState()
 
     const [id, setId] = useState(0) //id of active letter
     const [userText, setUserText] = useState('') //active text
@@ -48,7 +55,6 @@ export const GameLogic = ()=>{
 
         setId(userText.length)
         setStart(true) 
-        console.log(gameStats)
     }, [userText])
 
     useEffect(()=>{ 
@@ -76,15 +82,18 @@ export const GameLogic = ()=>{
                 countStat(gameStats, totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text.split(' ').length, gameItems.text, userText)
             })
             setStart(false)
+            addToHis(gameStats)
         }
     }, [id])
 
     useEffect(()=>{
         //clear all game after changes
+        setTimer(clearTimeout(timer))
         setId(0)
         setUserText('')
         setStart(false)
         setTotalMistakes(0)
+        setTimeoutStarted(true)
         document.querySelectorAll('#letter').forEach((e,i)=>{
             if(i>=0) e.style.color = colorsStore.textU
         })
@@ -92,16 +101,42 @@ export const GameLogic = ()=>{
         
 
         document.querySelector('textarea').removeAttribute('disabled')
+
     }, [gameItems.text])
 
     useEffect(()=>{
         if(start){
             setTimeS(new Date().getTime())
+            if(filtersStore.type === 'time'){
+                let timeE = Number(filtersStore.restrictions) * 1000
+
+                if(document.querySelector('textarea') == document.activeElement){
+                    setTimer(
+                        setTimeout(()=>{
+                            setStart(false)
+                            setTimeoutStarted(false)
+                        }, timeE)
+                    )
+                }
+
+            }
         }
     }, [start])
+
+    useEffect(()=>{
+        if(!timeoutStarted){
+            let timeE = Number(filtersStore.restrictions) * 1000
+            dis({
+                type: 'changeGameStats', 
+                payload: 
+                countStat(gameStats, totalMistakes, colorsStore.textA, 0, timeE, gameItems.text.split(' ').length, gameItems.text, userText)
+            })
+            addToHis(countStat(gameStats, totalMistakes, colorsStore.textA, 0, timeE, gameItems.text.split(' ').length, gameItems.text, userText))
+        }
+    }, [timeoutStarted])
     
     //...
     return  <textarea value={userText} 
             onChange={(e)=>setUserText(e.target.value)}
-            onBlur={()=>dis({type: 'changeColors', payload: {...colorsStore}})}/>
+            onBlur={()=>dis({type: 'refreshText', payload: !refreshText})}/>
 }

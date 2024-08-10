@@ -9,7 +9,7 @@ export const defaultState = {
   },
 
   filtersStore: {
-    type: 'words',
+    type: 'time',
     restrictions: '5',
     punctuation: 'without'
   },
@@ -19,8 +19,6 @@ export const defaultState = {
     activeLetter: -2,
     activeKey: ''
   }, 
-  changeWindow: false,
-  activeText: false,
 
   gameStats: {
     time: 0,
@@ -31,5 +29,10 @@ export const defaultState = {
     total: 0,
     totalFailed: 0,
     finished: false,
-  }
+  },
+
+  changeWindow: false,
+  refreshText: false,
+  activeHistory: false,
+
 }

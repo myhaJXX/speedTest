@@ -18,7 +18,7 @@ export default function Home() {
   }, [colorsStore])
 
   useEffect(()=>{
-    console.log(gameStats)
+    // console.log(gameStats)
   }, [gameStats.finished])
 
   useEffect(()=>{    
