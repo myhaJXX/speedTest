@@ -4,7 +4,8 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import cl from './TextSection.module.scss'
-import { countStat } from "@/app/js/countStat"
+// import { countStat } from "@/app/js/countStat"
+const countStat = require('@/app/js/countStat')
 import { addToHis } from "@/app/js/addToHistory"
 
 export const GameLogic = ()=>{
