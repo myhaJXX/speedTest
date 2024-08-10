@@ -4,7 +4,7 @@ backspace is like failed symbol //2 --fixed
 change colors broke results //3 --fixed
 add pause when text is blinking ?? //4
 cursor is blinking if u out of him //5 --fixed
-if change from time to words it is breajk
+if change from time to words it is breajk --fixed
 acc -- tofixed
 
 add timeEvents ::1
@@ -13,5 +13,5 @@ add version? ::3
 add documentation ::4
 add readme ::5
 change styles && add adapt ::6
-add tests ::7
+add tests ::7 --fixed
 add icon ::8

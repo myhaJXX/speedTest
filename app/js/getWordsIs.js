@@ -1,4 +1,4 @@
-export const getWordsId = (words) =>{
+const getWordsId = (words) =>{
     const dp = new Array(words.length+1).fill(0)
     words.forEach((e,i)=>{
         dp[i+1] = e.length + dp[i] + 1
@@ -8,3 +8,5 @@ export const getWordsId = (words) =>{
     //where (+1) is because space
     return dp
 }
+
+module.exports = getWordsId

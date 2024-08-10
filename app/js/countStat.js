@@ -1,6 +1,6 @@
 import { getWordsId } from "./getWordsIs";
 
-export const countStat = (gameStats, mistakes, color, timeS, timeE, total, textN, textU) => {
+export const countStat = (mistakes, color, timeS, timeE, textN, textU) => {
     //let mistakesCount = mistakes.filter(e=>e!=0).length //filter array and get his length (filter: only ceils with mistakes)
     let totalWords = textN.slice(0, textU.length).split(" ").length
     let correctLetters = 0;
@@ -30,7 +30,6 @@ export const countStat = (gameStats, mistakes, color, timeS, timeE, total, textN
     const rwa = Number((textU.length / time * 60 / 5).toFixed(2))
 
     return  {
-        ...gameStats, 
         total: totalWords, 
         failed: uncorrectWords,
         totalFailed: mistakes,

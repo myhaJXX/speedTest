@@ -79,7 +79,7 @@ export const GameLogic = ()=>{
             dis({
                 type: 'changeGameStats', 
                 payload: 
-                countStat(gameStats, totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text.split(' ').length, gameItems.text, userText)
+                countStat(totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text, userText)
             })
             setStart(false)
             addToHis(gameStats)
@@ -129,9 +129,9 @@ export const GameLogic = ()=>{
             dis({
                 type: 'changeGameStats', 
                 payload: 
-                countStat(gameStats, totalMistakes, colorsStore.textA, 0, timeE, gameItems.text.split(' ').length, gameItems.text, userText)
+                countStat(totalMistakes, colorsStore.textA, 0, timeE, gameItems.text, userText)
             })
-            addToHis(countStat(gameStats, totalMistakes, colorsStore.textA, 0, timeE, gameItems.text.split(' ').length, gameItems.text, userText))
+            addToHis(countStat(totalMistakes, colorsStore.textA, 0, timeE, gameItems.text, userText))
         }
     }, [timeoutStarted])
     
