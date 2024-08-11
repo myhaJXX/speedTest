@@ -15,9 +15,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
         <body>
           <ReduxProvider>
-            <Header/>
+            <Header/> {/*contain history*/}
             {children}
-            <Footer/>
+            <Footer/> {/*contain theme changer & links*/}
           </ReduxProvider>
         </body>
     </html>

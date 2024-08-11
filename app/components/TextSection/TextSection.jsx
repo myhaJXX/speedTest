@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import cl from './TextSection.module.scss'
 import Text from './Text'
@@ -14,18 +14,17 @@ const TextSection = () => {
     const filtersStore = useSelector(select=>select.filtersStore)
     const colorsStore = useSelector(select=>select.colorsStore)
     const refreshText = useSelector(select => select.refreshText)
-    const result = useSelector(select => select.gameStats.finished)
 
     const dis = useDispatch()
 
     useEffect(()=>{
       const box = document.querySelector(`.${cl.box}`)
       const changeText = async ()=>{
-        box.setAttribute('style', 'opacity: 0;')
-        let newText = await getText(filtersStore)
-        box.setAttribute('style', 'opacity: 1;')
+        box.setAttribute('style', 'opacity: 0;') //hide text
+        let newText = await getText(filtersStore) //get text from api
+        box.setAttribute('style', 'opacity: 1;') //show text
         setText(newText)
-        dis({type: 'changeLetter', payload: {...gameItems, text: newText}})
+        dis({type: 'changeLetter', payload: {...gameItems, text: newText}}) //update global value with this text
       }
       changeText()
     }, [refreshText])
@@ -37,6 +36,7 @@ const TextSection = () => {
         <FontAwesomeIcon icon={faRefresh} color={colorsStore.logo} style={{cursor: 'pointer'}}
         onClick={()=>dis({type:'refreshText', payload: !refreshText})}
         />
+        {/*icon which refresh text*/}
     </section>
   )
 }

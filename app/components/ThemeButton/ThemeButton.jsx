@@ -1,7 +1,11 @@
 import React from 'react'
 import cl from './ThemeButton.module.scss'
 import ThemePoint from './ThemePoint'
-
+/**
+ * 
+ * @param {object} colors 
+ * component which conain info about theme
+ */
 const ThemeButton = ({colors}) => {
   return (
     <article className={cl.cont} style={{backgroundColor: colors.bg, borderColor: colors.bgD}}>

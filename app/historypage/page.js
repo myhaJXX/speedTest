@@ -12,18 +12,18 @@ const page = () => {
   const active = useSelector (state => state.changeWindow)
   const dis = useDispatch()
   useEffect(()=>{
-    document.querySelector('body').setAttribute('style', `background-color: ${colorsStore.bg}`)
+    document.querySelector('body').setAttribute('style', `background-color: ${colorsStore.bg}`) //change bg
   }, [colorsStore])
 
   useEffect(()=>{
-    const colors = JSON.parse(localStorage.getItem('colors'))
-    if(colors) dis({type: 'changeColors', payload: {...colors}})
+    const colors = JSON.parse(localStorage.getItem('colors')) //get colors from localstorage
+    if(colors) dis({type: 'changeColors', payload: {...colors}}) //change theme to saved
   }, [])
 
   const [history, setHistory] = useState([])
 
   useEffect(()=>{
-    let history = JSON.parse(localStorage.getItem('history'))
+    let history = JSON.parse(localStorage.getItem('history')) //get history of attempts from localstorage
     setHistory(history ? history : [])
   }, [])
   return (
@@ -31,7 +31,7 @@ const page = () => {
       {active ? <ThemeChanger/> : <></>}
       <h2 style={{color: colorsStore.logo}}>History</h2>
       <section className={cl.box}>
-        {history.map((e,i)=><HistoryCard info={e} key={i}/>)}
+        {history.map((e,i)=><HistoryCard info={e} key={i}/>)} {/*Push box with attempts*/}
       </section>
     </main>
   )

@@ -1,3 +1,13 @@
+//themes for SPA
+
+// colors: 
+//     textA: active text
+//     textU: unActive text
+//     textUncorrect: uncorrect text
+//     logo: logo color
+//     bg: background
+//     bgD: background v2
+
 class Theme {
     constructor(title, colors){
         this.colors = colors;

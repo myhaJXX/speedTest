@@ -1,10 +1,7 @@
     //fix backspace
-    //fix color theme
-    //fix time
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import cl from './TextSection.module.scss'
-// import { countStat } from "@/app/js/countStat"
 const countStat = require('@/app/js/countStat')
 import { addToHis } from "@/app/js/addToHistory"
 
@@ -12,22 +9,21 @@ export const GameLogic = ()=>{
     const dis = useDispatch()
     const gameItems = useSelector(state=>state.gameItems)
     const colorsStore = useSelector(state=>state.colorsStore)
-    const gameStats = useSelector(state=>state.gameStats)
     const filtersStore = useSelector(state => state.filtersStore)
     const refreshText = useSelector(select => select.refreshText)
 
-    const [timeS, setTimeS] = useState()
+    const [timeS, setTimeS] = useState() //contains start time
 
-    const [timeoutStarted, setTimeoutStarted] = useState(true)
+    const [timeoutStarted, setTimeoutStarted] = useState(true) //contain information about whether the timer is enabled
 
-    const [timer, setTimer] = useState()
+    const [timer, setTimer] = useState() //will contain setTimeout, and we can clear it when we need
 
     const [id, setId] = useState(0) //id of active letter
     const [userText, setUserText] = useState('') //active text
 
-    const [totalMistakes, setTotalMistakes] = useState(0)
+    const [totalMistakes, setTotalMistakes] = useState(0) //amout of all mistakes
 
-    const [start, setStart] = useState(false)
+    const [start, setStart] = useState(false) //true when the first letter is entered
 
     //change color
     const changeColor = (id, color)=>{
@@ -47,43 +43,46 @@ export const GameLogic = ()=>{
         if(length){
             id < userText.length ? (
                 userText[id] === gameItems.text[id] ? changeColor(id, colorsStore.textA) : changeColor(id, colorsStore.textUncorrect)
-            ) : changeColor(id - 1, colorsStore.textU)
+            ) : changeColor(id - 1, colorsStore.textU) //textU when backspace
         }
         //if we see mistake start function which will find and place mistake
         if(userText[id] != gameItems.text[id] && userText){
-            if(id < userText.length) setTotalMistakes(totalMistakes+1)
+            //the second condition discards character deletions
+            if(id < userText.length) setTotalMistakes(totalMistakes+1) 
         }
 
-        setId(userText.length)
-        setStart(true) 
+        setId(userText.length) //change active letterId
+        setStart(true) //game is started
     }, [userText])
 
+    //move cursor
     useEffect(()=>{ 
         let ele = document.querySelectorAll('#letter')[id]
         let cursor = document.querySelector('#cursor')
         if(ele && cursor){
-            //cursor is located to the right of the next letter
+            //cursor is located to the left of the next letter
             //we need to move it down
-            if(cursor.getBoundingClientRect().top < ele.getBoundingClientRect().top){
+            if(cursor.getBoundingClientRect().top < ele.getBoundingClientRect().top){ //if you need to go down a line
                 let top = document.querySelector(`.${cl.box}>article`).style.marginTop
                 top = Number(top.slice(0, top.indexOf('p')))
-                document.querySelector(`.${cl.box}>article`).style.marginTop = top - 50 + 'px'
+                document.querySelector(`.${cl.box}>article`).style.marginTop = top - 50 + 'px' //move
             }
-            //move cursor to next letter
+            //move cursor to the next letter
             let left = ele.getBoundingClientRect().left - document.querySelector(`.${cl.box}`).getBoundingClientRect().left
             cursor.style.left = `${left}px`
         }
-
+        //cursor at the end of the text
         if(id == gameItems.text.length && cursor){
             document.querySelector('textarea').setAttribute('disabled', 'true') //off textarea
-            let timeE = new Date().getTime()
+            let timeE = new Date().getTime() //get time of the end
+            //change stats
             dis({
                 type: 'changeGameStats', 
                 payload: 
                 countStat(totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text, userText)
             })
             setStart(false)
-            addToHis(gameStats)
+            addToHis(countStat(totalMistakes, colorsStore.textA, timeS, timeE, gameItems.text, userText)) //add to localstorage stats
         }
     }, [id])
 
@@ -99,17 +98,15 @@ export const GameLogic = ()=>{
             if(i>=0) e.style.color = colorsStore.textU
         })
         document.querySelector(`.${cl.box}>article`).style.marginTop = 0+'px'
-        
-
         document.querySelector('textarea').removeAttribute('disabled')
 
     }, [gameItems.text])
 
     useEffect(()=>{
         if(start){
-            setTimeS(new Date().getTime())
+            setTimeS(new Date().getTime()) //start clock
             if(filtersStore.type === 'time'){
-                let timeE = Number(filtersStore.restrictions) * 1000
+                let timeE = Number(filtersStore.restrictions) * 1000 //set end time
 
                 if(document.querySelector('textarea') == document.activeElement){
                     setTimer(
@@ -118,21 +115,22 @@ export const GameLogic = ()=>{
                             setTimeoutStarted(false)
                         }, timeE)
                     )
+                    //We put a timeout in the state so that it can be stopped at any time
+                    //can’t set a variable because the value will disappear when redrawn
                 }
-
             }
         }
     }, [start])
 
     useEffect(()=>{
-        if(!timeoutStarted){
-            let timeE = Number(filtersStore.restrictions) * 1000
+        if(!timeoutStarted){ //when timer is ended
+            let timeE = Number(filtersStore.restrictions) * 1000 //from s to ms
             dis({
                 type: 'changeGameStats', 
                 payload: 
                 countStat(totalMistakes, colorsStore.textA, 0, timeE, gameItems.text, userText)
             })
-            addToHis(countStat(totalMistakes, colorsStore.textA, 0, timeE, gameItems.text, userText))
+            addToHis(countStat(totalMistakes, colorsStore.textA, 0, timeE, gameItems.text, userText)) //add to localstorage
         }
     }, [timeoutStarted])
     
@@ -140,4 +138,7 @@ export const GameLogic = ()=>{
     return  <textarea value={userText} 
             onChange={(e)=>setUserText(e.target.value)}
             onBlur={()=>dis({type: 'refreshText', payload: !refreshText})}/>
+    //change => change text of user
+    //value => text of user
+    //unfocus => refresh game
 }

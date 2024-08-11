@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {Array} words 
+ * array of words
+ * @returns {Array}
+ */
 const getWordsId = (words) =>{
     const dp = new Array(words.length+1).fill(0)
     words.forEach((e,i)=>{
@@ -5,7 +11,7 @@ const getWordsId = (words) =>{
     })
 
     //start of next word is ending of previous word + 1
-    //where (+1) is because space
+    //where (+1) is space between 2 words
     return dp
 }
 

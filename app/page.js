@@ -14,18 +14,14 @@ export default function Home() {
   const gameStats = useSelector(state => state.gameStats)
 
   useEffect(()=>{
-    document.querySelector('body').style.backgroundColor = colorsStore.bg
+    document.querySelector('body').style.backgroundColor = colorsStore.bg  //change color of bg at start
   }, [colorsStore])
 
-  useEffect(()=>{
-    // console.log(gameStats)
-  }, [gameStats.finished])
 
   useEffect(()=>{    
-    //mb add localeSaving colors
     let localeColors;
-    if(localStorage.getItem('colors')) localeColors = JSON.parse(localStorage.getItem('colors'))
-    if(localeColors) dis({type:'changeColors', payload: localeColors})
+    if(localStorage.getItem('colors')) localeColors = JSON.parse(localStorage.getItem('colors')) //try find color-theme locally
+    if(localeColors) dis({type:'changeColors', payload: localeColors}) //change theme
   }, [])
 
   return (

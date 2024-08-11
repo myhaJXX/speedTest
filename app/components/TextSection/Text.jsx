@@ -1,7 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import cl from './TextSection.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { GameLogic } from './gameLogic'
+
+/**
+ * 
+ * @param {string} text 
+ * text which come from api
+ */
 
 const Text = ({text}) => {
   const colorsStore = useSelector(state=>state.colorsStore)
@@ -11,7 +17,7 @@ const Text = ({text}) => {
   const [cursor, setCuros] = useState(false)
 
   useEffect(()=>{
-    setCuros(false)
+    setCuros(false) //close cursor if text is updated or game is finished
   }, [gameItems.text, gameStats.finished])
 
   return (
@@ -20,6 +26,7 @@ const Text = ({text}) => {
       {cursor ? <div style={{backgroundColor: colorsStore.logo}} id='cursor'/> : <></>}
       <article style={{marginTop: '0px'}}>
         {text.split('').map((e,i)=><span id='letter' style={{color: colorsStore.textU}} key={i}>{e}</span>)}
+        {/*spit text to spans to change the color of each letter*/}
       </article>
     </div>
   )

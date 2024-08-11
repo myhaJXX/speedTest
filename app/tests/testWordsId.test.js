@@ -1,3 +1,4 @@
+//tests for converting
 const getid = require('../js/getWordsIs')
 
 describe(
@@ -23,7 +24,7 @@ describe(
         ]
 
         testCases.forEach(test => {
-            it(`Test of ${test.inString.join(' ')} must be ${test.expected.join('-')}`,
+            it(`Case: (${test.inString.join(' ')}) | Must: [${test.expected.join('-')}]`,
                 ()=>{
                     const res = getid(test.inString)
                     expect(res).toStrictEqual(test.expected)

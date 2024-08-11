@@ -1,3 +1,5 @@
+//transcriber
+//converts object keys into understandable words
 export const transcriber = {
     acc: 'acc',
     failed: 'Failed Words',

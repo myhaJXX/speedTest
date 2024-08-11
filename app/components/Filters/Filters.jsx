@@ -3,6 +3,11 @@ import { useSelector } from 'react-redux';
 import cl from './Filters.module.scss'
 import FiltersLinks from './FiltersLinks';
 
+/*
+cont ainer of the links 
+on the top of screen
+*/
+
 const Filters = () => {
 
     const colorsStore = useSelector(state=>state.colorsStore)

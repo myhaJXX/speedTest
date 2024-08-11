@@ -4,9 +4,9 @@ const nextConfig = {
     webpack: ((config, options)=>{
         config.resolve.alias = {
             ...config.resolve.alias,
-            '@styles': path.resolve(__dirname, 'app/static/styles'),
-            '@imgs': path.resolve(__dirname, 'app/static/imgs'),
-            '@jsStatic': path.resolve(__dirname, 'app/static/js'),
+            '@styles': path.resolve(__dirname, 'app/static/styles'), //styles like variables and mixins
+            '@imgs': path.resolve(__dirname, 'app/static/imgs'), //static images
+            '@jsStatic': path.resolve(__dirname, 'app/static/js'), //constant info which uses in SPA
         }
         return config
     })

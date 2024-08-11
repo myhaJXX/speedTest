@@ -1,14 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import cl from './GameResults.module.scss'
 import GameResultBox from './GameResultBox'
-import { addToHis } from '@/app/js/addToHistory'
-
+/*
+window with results
+it has 2 sides (speed & accuracy)
+*/
 const GameResult = () => {
-  const results = useSelector(state => state.gameStats)
   const colorsStore = useSelector(state => state.colorsStore)
-
-  const [check , setCheck] = useState(false)
 
   return (
     <section className={cl.cont} style={{backgroundColor: colorsStore.bg}}>
