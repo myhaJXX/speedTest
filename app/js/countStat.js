@@ -33,7 +33,8 @@ const countStat = (mistakes, color, timeS, timeE, textN, textU) => {
         if(rgb == e.style.color) correctLetters++ //count correct letters
     })
     
-    const acc = (Number((correctLetters / (mistakes + correctLetters))) * 100).toFixed(2) + '%' //find accuracy by pattern 0.00
+    let accNumber = Number((correctLetters / (mistakes + correctLetters))) //0/0 if change browser tab
+    const acc = (accNumber ? accNumber : 0 * 100).toFixed(2) + '%' //find accuracy by pattern 0.00
     const time = Number(((timeE - timeS) / 1000).toFixed(2))
     const wpm = Number(((textU.length / 5 - uncorrectWords) / time * 60).toFixed(2)) //average word.length ~5 letters
     const rwa = Number((textU.length / time * 60 / 5).toFixed(2))

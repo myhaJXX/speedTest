@@ -1,7 +1,7 @@
 {
   "homepage": "https://myhajxx.github.io/speedTest/",
   "name": "speed2",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 5252",

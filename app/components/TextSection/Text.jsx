@@ -16,19 +16,10 @@ const Text = ({text}) => {
   const gameStats = useSelector(state=>state.gameStats)
 
   const [cursor, setCuros] = useState(false)
-  const [copyC, setCopyC] = useState(false)
 
   useEffect(()=>{
     setCuros(false) //close cursor if text is updated or game is finished
   }, [gameItems.text, gameStats.finished])
-
-  useEffect(()=>{
-    if(cursor){
-      setCopyC(cursor)
-    } else {
-
-    }
-  }, [cursor])
 
   return (
     <div className={cl.box} onClick={()=>setCuros(true)}>
@@ -38,7 +29,7 @@ const Text = ({text}) => {
         {text.split('').map((e,i)=><span id='letter' style={{color: colorsStore.textU}} key={i}>{e}</span>)}
         {/*spit text to spans to change the color of each letter*/}
       </article>
-      {!cursor ? <BlurText cursor={cursor}/> : <></>}
+      {!cursor ? <BlurText/> : <></>}
     </div>
   )
 }

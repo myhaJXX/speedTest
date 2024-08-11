@@ -11,10 +11,13 @@
     position: absolute;
     z-index: 4;
 
-    >h1{
+    >aside{
         align-self: center;
         grid-column-start: 1;
         grid-column-end: 3;
+        display: flex;
+        gap: 10px;
+        align-items: center;
     }
 
     div{
@@ -22,9 +25,13 @@
         flex-direction: column;
         gap: 10px;
     }
+
+    p{
+        font-size: 1.5em;
+    }
 }
 
-@media (max-width: 700px){
+@media (max-width: 800px){
     .cont{
         display: flex;
         flex-direction: column;
@@ -33,6 +40,19 @@
         div{
             flex-direction: row;
             flex-wrap: wrap;
+        }
+
+        aside{
+            flex-direction: column;
+            align-items: center;
+
+            h1{
+                line-height: 50px;
+            }
+
+            svg{
+                display: none;
+            }
         }
     }
 }
