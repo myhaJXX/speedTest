@@ -15,6 +15,7 @@
 
 .box{
     max-height: 150px;
+    min-height: 150px;
     overflow: hidden;
     transition: all .4s linear;
     position: relative;

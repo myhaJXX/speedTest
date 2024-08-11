@@ -64,13 +64,15 @@ export const GameLogic = ()=>{
         if(ele && cursor){
             //cursor is located to the left of the next letter
             //we need to move it down
-            console.log(cursor.getBoundingClientRect().top, ele.getBoundingClientRect().top)
-            if(cursor.getBoundingClientRect().top < ele.getBoundingClientRect().top){ //if you need to go down a line
+            let cursorTop = Math.floor(cursor.getBoundingClientRect().top)
+            let letterTop = Math.floor(ele.getBoundingClientRect().top)
+            console.log(cursorTop, letterTop)
+            if(cursorTop < letterTop){ //if you need to go down a line
                 console.log('down')
                 let top = document.querySelector(`.${cl.box}>article`).style.marginTop
                 top = Number(top.slice(0, top.indexOf('p')))
                 document.querySelector(`.${cl.box}>article`).style.marginTop = top - cursorHeight + 'px' //move
-            } else if(cursor.getBoundingClientRect().top > ele.getBoundingClientRect().top){ //if you need to go up a line
+            } else if(cursorTop > letterTop){ //if you need to go up a line
                 console.log('top')
                 let top = document.querySelector(`.${cl.box}>article`).style.marginTop
                 top = Number(top.slice(0, top.indexOf('p')))
