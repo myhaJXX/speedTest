@@ -59,19 +59,18 @@ export const GameLogic = ()=>{
     useEffect(()=>{ 
         let ele = document.querySelectorAll('#letter')[id]
         let cursor = document.querySelector('#cursor')
-        let cursorHeight = window.innerWidth <= 550 ? 32.8 : 50
+        let cursorHeight = window.innerWidth <= 550 ? 35 : 50
 
         if(ele && cursor){
             //cursor is located to the left of the next letter
             //we need to move it down
+            console.log(cursor.getBoundingClientRect().top, ele.getBoundingClientRect().top)
             if(cursor.getBoundingClientRect().top < ele.getBoundingClientRect().top){ //if you need to go down a line
                 console.log('down')
                 let top = document.querySelector(`.${cl.box}>article`).style.marginTop
                 top = Number(top.slice(0, top.indexOf('p')))
                 document.querySelector(`.${cl.box}>article`).style.marginTop = top - cursorHeight + 'px' //move
-            }
-
-            else if(cursor.getBoundingClientRect().top > ele.getBoundingClientRect().top){ //if you need to go up a line
+            } else if(cursor.getBoundingClientRect().top > ele.getBoundingClientRect().top){ //if you need to go up a line
                 console.log('top')
                 let top = document.querySelector(`.${cl.box}>article`).style.marginTop
                 top = Number(top.slice(0, top.indexOf('p')))
@@ -82,7 +81,7 @@ export const GameLogic = ()=>{
             cursor.style.left = `${left}px`
         }
         //cursor at the end of the text
-        if(id == gameItems.text.length && cursor){
+        if(id >= gameItems.text.length && cursor){
             document.querySelector('textarea').setAttribute('disabled', 'true') //off textarea
             let timeE = new Date().getTime() //get time of the end
             //change stats
@@ -146,8 +145,14 @@ export const GameLogic = ()=>{
     
     //...
     return  <textarea value={userText} 
-            onChange={(e)=>setUserText(e.target.value)}
-            onBlur={()=>dis({type: 'refreshText', payload: !refreshText})}/>
+            onChange={(e)=>{
+                if(e.target.value[e.target.value.length - 1] != '\n') setUserText(e.target.value) //enter non-supported
+            }}
+            onBlur={()=>{
+                dis({type: 'refreshText', payload: !refreshText})
+            }}
+            onPaste={(e)=>e.preventDefault()} //block ctrl + v
+            />
     //change => change text of user
     //value => text of user
     //unfocus => refresh game

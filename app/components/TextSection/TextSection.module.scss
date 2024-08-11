@@ -23,7 +23,7 @@
         font-family: OpenSans;
         line-height: 50px;
     }
-    >div{
+    .cursor{
         height: 50px;
         width: 2px;
         position: absolute;
@@ -40,6 +40,19 @@
 
 }
 
+.blur{
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    position: absolute;
+    transition: all .2s linear;
+    opacity: 0.8;
+}
+
 @keyframes blink{
     0%{
         opacity: 1;
@@ -54,10 +67,11 @@
     .box {
         span{
             font-size: 1.5em;
-            line-height: 32.8px;
+            line-height: 35px;
         }
 
-        >div{
+        .cursor{
+            margin-top: 0.8px;
             height: 32.8px;
         }
     }

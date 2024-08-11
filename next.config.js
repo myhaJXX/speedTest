@@ -2,6 +2,7 @@
 const path = require('path')
 const nextConfig = {
     output: 'export',
+    basePath: "/speedTest",
     webpack: ((config, options)=>{
         config.resolve.alias = {
             ...config.resolve.alias,
