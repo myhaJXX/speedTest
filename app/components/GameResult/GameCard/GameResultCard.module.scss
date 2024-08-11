@@ -20,7 +20,23 @@
 
     hr{
         height: 30px;
-        width: 3px;
+        min-width: 3px;
         border: none;
+        border-radius: $radius;
+    }
+}
+
+@media (max-width: 700px){
+    .card{
+        padding: 5px 10px;
+
+        h4{
+            font-size: 1.125em;
+        }
+
+        p{
+            font-size: 1.25em;
+            line-height: normal;
+        }
     }
 }

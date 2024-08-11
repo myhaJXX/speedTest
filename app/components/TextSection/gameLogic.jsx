@@ -59,13 +59,23 @@ export const GameLogic = ()=>{
     useEffect(()=>{ 
         let ele = document.querySelectorAll('#letter')[id]
         let cursor = document.querySelector('#cursor')
+        let cursorHeight = window.innerWidth <= 550 ? 32.8 : 50
+
         if(ele && cursor){
             //cursor is located to the left of the next letter
             //we need to move it down
             if(cursor.getBoundingClientRect().top < ele.getBoundingClientRect().top){ //if you need to go down a line
+                console.log('down')
                 let top = document.querySelector(`.${cl.box}>article`).style.marginTop
                 top = Number(top.slice(0, top.indexOf('p')))
-                document.querySelector(`.${cl.box}>article`).style.marginTop = top - 50 + 'px' //move
+                document.querySelector(`.${cl.box}>article`).style.marginTop = top - cursorHeight + 'px' //move
+            }
+
+            else if(cursor.getBoundingClientRect().top > ele.getBoundingClientRect().top){ //if you need to go up a line
+                console.log('top')
+                let top = document.querySelector(`.${cl.box}>article`).style.marginTop
+                top = Number(top.slice(0, top.indexOf('p')))
+                document.querySelector(`.${cl.box}>article`).style.marginTop = top + cursorHeight + 'px' //move
             }
             //move cursor to the next letter
             let left = ele.getBoundingClientRect().left - document.querySelector(`.${cl.box}`).getBoundingClientRect().left

@@ -9,8 +9,8 @@ export const defaultState = {
   },
 
   filtersStore: {
-    type: 'time', // time/words
-    restrictions: '5', // 5 15 30 45 (secs / words)
+    type: 'words', // time/words
+    restrictions: '15', // 5 15 30 45 (secs / words)
     punctuation: 'without' //with (,.! etc) or without
   },
 

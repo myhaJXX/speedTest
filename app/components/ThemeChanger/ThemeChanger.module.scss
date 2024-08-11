@@ -43,3 +43,9 @@
         cursor: pointer;
     }
 }
+
+@media (max-width: 550px){
+    .box{
+        width: 95%;
+    }
+}

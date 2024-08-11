@@ -25,3 +25,9 @@
         }
     }
 }
+
+@media (max-width: 400px){
+    .cont a:nth-child(2), .cont a:nth-child(3){
+        display: none;
+    }
+}

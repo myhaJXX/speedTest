@@ -49,3 +49,16 @@
         opacity: 0;
     }
 }
+
+@media (max-width: 550px){
+    .box {
+        span{
+            font-size: 1.5em;
+            line-height: 32.8px;
+        }
+
+        >div{
+            height: 32.8px;
+        }
+    }
+}

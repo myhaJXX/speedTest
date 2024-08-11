@@ -10,7 +10,7 @@
 
     >hr{
         height: 90%;
-        width: 4px;
+        min-width: 4px;
         border: none;
         border-radius: $radiusL;
     }
@@ -29,5 +29,14 @@
             transform: scale(1.05);
             opacity: 0.5;
         }
+    }
+}
+
+@media (max-width: 550px){
+    .cont{
+        width: 100%;
+        overflow-x: scroll;
+        overflow-y: visible;
+        position: relative;
     }
 }

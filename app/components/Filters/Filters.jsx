@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import cl from './Filters.module.scss'
 import FiltersLinks from './FiltersLinks';
 
 /*
-cont ainer of the links 
+container of the links 
 on the top of screen
 */
 

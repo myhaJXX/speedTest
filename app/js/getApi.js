@@ -14,6 +14,8 @@ export const getText = async (params)=>{
             text = text.replaceAll(/,|\.|!|\?|\(|\)|-|—|:/g, '') //delete all punctuation
             text = text.toLowerCase()
         }
+
+        text = text.split(" ").filter(e=>e.length < 10).join(' ') //filter words (filter: length<10)
     
         if(params.type === 'words'){
             text = text.split(' ').slice(0, params.restrictions).join(' ') //separate the required number of words
