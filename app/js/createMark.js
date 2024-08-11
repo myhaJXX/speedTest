@@ -17,7 +17,7 @@ const marks = {
 const createMark = (wpm) => {
     let res = 'veryLow';
     for(let key in marks){
-        if(wpm > marks[`${key}`]) res = key //Find the required key
+        if(wpm >= marks[`${key}`]) res = key //Find the required key
     }
     return res
 }
